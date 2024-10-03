@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "571c86c8-1f97-498a-928b-e0efe04da62d",
+		"name": "Microservices API Tests by Abishek",
+		"description": "Postman collection for testing the Posts and Comments microservices API, created by Abishek. You can find the full demo project at: [https://github.com/abhiabhishektr/microservice-rest-rpc-demo](https://github.com/abhiabhishektr/microservice-rest-rpc-demo)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31049459"
+	},
+	"item": [
+		{
+			"name": "Posts Service",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Sample Post\",\n  \"content\": \"This is a sample post.\",\n  \"author\": \"John Doe\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"posts"
+							]
+						},
+						"description": "StartFragmentCreates a new post. **Important:** Note down the 'postId' from the response - you'll need it for later requests.EndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"posts"
+							]
+						},
+						"description": "StartFragmentRetrieves a list of all existing posts.EndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for the microservice responsible for managing posts."
+		},
+		{
+			"name": "Comments Service",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"postId\": \"<POST_ID>\",\n  \"content\": \"This is a sample comment.\",\n  \"author\": \"Jane Doe\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"comments"
+							]
+						},
+						"description": "StartFragmentAdds a new comment to a specific post. **Before running:** Replace \\`\\` in the request body with the 'postId' you copied from the 'Create Post' response.EndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments by Post ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/comments/<POST_ID>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"comments",
+								"<POST_ID>"
+							]
+						},
+						"description": "StartFragmentFetches all comments belonging to a particular post. **Before running:** Replace \\`\\` in the URL with the actual post ID.EndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for the microservice handling comments associated with posts."
+		}
+	]
+}

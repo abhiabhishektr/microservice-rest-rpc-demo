@@ -1,20 +1,23 @@
-const Post = require('../models/post.model');
+const PostService = require('../services/post.service');
 
-exports.createPost = async (req, res, next) => {
-  try {
-    const post = new Post({ title: req.body.title });
-    await post.save();
-    res.status(201).json(post);
-  } catch (error) {
-    next(error);
+class PostController {
+  async createPost(req, res, next) {
+    try {
+      const post = await PostService.createPost(req.body);
+      res.status(201).json(post);
+    } catch (error) {
+      next(error);
+    }
   }
-};
 
-exports.getPosts = async (req, res, next) => {
-  try {
-    const posts = await Post.find().populate('comments');
-    res.status(200).json(posts);
-  } catch (error) {
-    next(error);
+  async getPosts(req, res, next) {
+    try {
+      const posts = await PostService.getPosts();
+      res.status(200).json(posts);
+    } catch (error) {
+      next(error);
+    }
   }
-};
+}
+
+module.exports = new PostController();

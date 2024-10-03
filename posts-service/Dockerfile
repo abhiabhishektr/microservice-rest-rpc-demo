@@ -1,7 +1,7 @@
 # Dockerfile for posts service
 
 # Step 1: Specify the base image
-FROM node:14
+FROM node:20.9.0
 
 # Step 2: Set the working directory
 WORKDIR /usr/src/app

@@ -1,42 +1,27 @@
-version: '3.8'  # Specify the version of Docker Compose
+version: '3'
 
 services:
   posts:
-    build:
-      context: ./posts-service  # Path to the Dockerfile for posts service
+    build: ./posts-service
     ports:
-      - "3001:3000"     # Map host port 3001 to container port 3000
-    environment:
-      - NODE_ENV=production
-
+      - "3000:3000"
+  
   comments:
-    build:
-      context: ./comments-service  # Path to the Dockerfile for comments service
+    build: ./comments-service
     ports:
-      - "3002:3000"       # Map host port 3002 to container port 3000
-    environment:
-      - NODE_ENV=production
-
+      - "3001:3001"
+  
   event-bus:
-    build:
-      context: ./event-bus-service  # Path to the Dockerfile for event-bus service
+    build: ./event-bus-service
     ports:
-      - "3003:3000"       # Map host port 3003 to container port 3000
-    environment:
-      - NODE_ENV=production
+      - "3002:3002"
 
   moderation:
-    build:
-      context: ./moderation-service  # Path to the Dockerfile for moderation service
+    build: ./moderation-service
     ports:
-      - "3004:3000"       # Map host port 3004 to container port 3000
-    environment:
-      - NODE_ENV=production
+      - "3003:3003"
 
   query:
-    build:
-      context: ./query-service  # Path to the Dockerfile for query service
+    build: ./query-service
     ports:
-      - "3005:3000"     # Map host port 3005 to container port 3000
-    environment:
-      - NODE_ENV=production
+      - "3004:3004"

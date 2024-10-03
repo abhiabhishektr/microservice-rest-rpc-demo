@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-module.exports = {
-  MONGO_URI: process.env.MONGO_URI,
-  PORT: process.env.PORT || 7001,
+const config = {
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/comments',
+  PORT: process.env.PORT || 3001,
 };
+
+module.exports = config;
